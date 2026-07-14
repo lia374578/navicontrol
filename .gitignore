@@ -220,6 +220,5 @@ __marimo__/
 .claude/
 .DS_Store
 .git/
-compat/
 ff_sdk_navi_devkit_20260628.zip
 ffsdk_navi_devkit.zip
