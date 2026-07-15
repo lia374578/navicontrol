@@ -222,3 +222,5 @@ __marimo__/
 .git/
 ff_sdk_navi_devkit_20260628.zip
 ffsdk_navi_devkit.zip
+node_modules/
+ff_sdk/

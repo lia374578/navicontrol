@@ -1,0 +1,376 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --bg-color: #07080a;
+  --panel-bg: rgba(13, 15, 22, 0.85);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --text-primary: #f1f3f9;
+  --text-secondary: #7e8494;
+  
+  --color-green: #00e575;
+  --color-green-glow: rgba(0, 229, 117, 0.35);
+  --color-blue: #00a2ff;
+  --color-blue-glow: rgba(0, 162, 255, 0.35);
+  --color-red: #ff3b30;
+  --color-red-glow: rgba(255, 59, 48, 0.35);
+  --color-amber: #ff9f0a;
+  --color-amber-glow: rgba(255, 159, 10, 0.35);
+  
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Orbitron', sans-serif;
+  --font-mono: 'Share Tech Mono', monospace;
+  
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-color);
+  background-image: 
+    radial-gradient(circle at 50% 40%, rgba(26, 32, 53, 0.75) 0%, var(--bg-color) 100%),
+    radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 0);
+  background-size: 100% 100%, 20px 20px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  touch-action: none;
+}
+
+/* App Container */
+#app {
+  width: 100%;
+  max-width: 440px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+main {
+  width: 100%;
+}
+
+/* Control Panel Card */
+.control-panel {
+  width: 100%;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 28px;
+  padding: 24px;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.65), 
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+
+/* Header styling */
+.panel-header {
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding-bottom: 18px;
+}
+
+.panel-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #ffffff 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.panel-header p {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+}
+
+/* Connection Center box */
+.connection-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  padding: 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.connect-btn {
+  width: 100%;
+  padding: 14px 20px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  outline: none;
+}
+
+/* Connect Button State Colors */
+.connect-btn.disconnected {
+  background: linear-gradient(180deg, #252836 0%, #171923 100%);
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.connect-btn.disconnected:hover {
+  background: linear-gradient(180deg, #2f3345 0%, #1e202d 100%);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.connect-btn.connecting {
+  background: rgba(0, 162, 255, 0.08);
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+  box-shadow: 0 0 16px var(--color-blue-glow);
+  cursor: not-allowed;
+}
+
+.connect-btn.connected {
+  background: rgba(0, 229, 117, 0.08);
+  color: var(--color-green);
+  border-color: var(--color-green);
+  box-shadow: 0 0 16px var(--color-green-glow);
+}
+
+.connect-btn.connected:hover {
+  background: rgba(255, 59, 48, 0.08);
+  color: var(--color-red);
+  border-color: var(--color-red);
+  box-shadow: 0 0 16px var(--color-red-glow);
+}
+
+.connect-btn.failed {
+  background: rgba(255, 59, 48, 0.08);
+  color: var(--color-red);
+  border-color: var(--color-red);
+  box-shadow: 0 0 16px var(--color-red-glow);
+}
+
+.connect-btn.failed:hover {
+  background: linear-gradient(180deg, #ff453a 0%, #ff3b30 100%);
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px var(--color-red-glow);
+}
+
+/* Spinner */
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Status indicator text */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #3a3d4a;
+  transition: all 0.3s;
+}
+
+.status-dot.disconnected {
+  background-color: #3a3d4a;
+}
+
+.status-dot.connecting {
+  background-color: var(--color-amber);
+  box-shadow: 0 0 8px var(--color-amber-glow);
+  animation: pulse 0.8s infinite alternate;
+}
+
+.status-dot.connected {
+  background-color: var(--color-green);
+  box-shadow: 0 0 8px var(--color-green-glow);
+  animation: pulse 1.5s infinite alternate;
+}
+
+.status-dot.failed {
+  background-color: var(--color-red);
+  box-shadow: 0 0 8px var(--color-red-glow);
+}
+
+@keyframes pulse {
+  from { opacity: 0.4; }
+  to { opacity: 1; filter: brightness(1.2); }
+}
+
+/* D-pad Centered Box */
+.dpad-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 0;
+  flex-grow: 1;
+}
+
+.dpad {
+  display: grid;
+  grid-template-columns: repeat(3, 84px);
+  grid-template-rows: 84px 84px 48px;
+  gap: 16px;
+}
+
+/* D-pad button styles */
+.dpad button {
+  width: 84px;
+  height: 84px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  color: var(--text-secondary);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.dpad button:hover:not(:active) {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.dpad button.active {
+  background: linear-gradient(135deg, rgba(0, 229, 117, 0.08) 0%, rgba(0, 229, 117, 0.22) 100%);
+  color: var(--color-green);
+  border-color: var(--color-green);
+  transform: scale(0.92);
+  box-shadow: 
+    0 0 16px rgba(0, 229, 117, 0.2),
+    inset 0 1px 0 rgba(0, 229, 117, 0.08);
+}
+
+.dpad button.shift-btn {
+  grid-column: span 3;
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  font-size: 0.95rem;
+  font-family: var(--font-display);
+  letter-spacing: 1px;
+}
+
+.dpad button.shift-btn.active {
+  background: linear-gradient(135deg, rgba(0, 162, 255, 0.08) 0%, rgba(0, 162, 255, 0.22) 100%);
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+  box-shadow: 
+    0 0 16px rgba(0, 162, 255, 0.2),
+    inset 0 1px 0 rgba(0, 162, 255, 0.08);
+}
+
+/* Terminal HUD */
+.hud-console {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 16px;
+  padding: 12px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hud-console::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+  background-size: 100% 4px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.console-text {
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+  line-height: 1.4;
+}
+
+.console-text.idle {
+  color: var(--text-secondary);
+}
+
+.console-text.active-transmitting {
+  color: var(--color-green);
+  text-shadow: 0 0 8px var(--color-green-glow);
+  font-weight: 600;
+}
+
+.console-text.offline {
+  color: var(--color-amber);
+  text-shadow: 0 0 8px var(--color-amber-glow);
+}
