@@ -14,13 +14,13 @@ A futuristic, high-tech tactical controller interface has been implemented for t
 
 - **Robot Connection Handshake Simulator:**
   - Added a tactical **Connect Link** button to establish a connection with the robot dog.
-  - Simulates a 2-second handshaking period with a pulsing orange indicator and a loading spinner.
-  - Generates realistic connection results: 85% success rate (green status) or 15% failure rate (red status, enabling a "Retry Link" option).
+  - Server handles the handshaking period with a pulsing orange indicator and a loading spinner.
 
 - **HUD Status Console:**
   - Integrated a monospaced command-line HUD at the bottom of the interface.
   - Once connected, pressing keys (WASD / Arrows on keyboard or D-pad screen buttons) activates a glowing **green terminal line** detailing the active transmissions (e.g. `● TRANSMITTING: SENDING FORWARD COMMAND` or `● TRANSMITTING: SENDING LEFT TURN MESSAGE`).
   - Provides proper safety behaviors by clearing commands when keys are released (`onpointerup`) or when the pointer drifts off a button (`onpointerleave`).
+  - Press shift on desktop to increase speed. Becomes a run toggle on mobile devices.
 
 ---
 
