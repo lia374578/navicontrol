@@ -40,3 +40,4 @@ graph TD
     D --> D1[Green Active Transmission Terminal]
 ```
 
+Can connect to OpenAI's realtime AI and use speech-to-text mode for voice commands now.
