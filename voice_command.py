@@ -107,7 +107,6 @@ def process_voice_command(audio_base64: str, mime_type: str = "audio/webm") -> d
         return {"action": "error", "error": f"Gemini API call failed: {e}"}
 
     raw_text = response.text.strip()
-    # Strip markdown code fences if present (e.g. ```json ... ```)
     raw_text = re.sub(r"^```(?:json)?\s*|```$", "", raw_text, flags=re.DOTALL).strip()
 
     try:
@@ -115,7 +114,6 @@ def process_voice_command(audio_base64: str, mime_type: str = "audio/webm") -> d
     except json.JSONDecodeError:
         return {"action": "error", "error": f"Gemini returned unparseable JSON: {raw_text}"}
 
-    # Validate required fields
     if "action" not in result:
         return {"action": "error", "error": f"Response missing 'action' field: {result}"}
 
